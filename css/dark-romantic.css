@@ -1,0 +1,289 @@
+/* ================================================================
+   DARK ROMANTIC ATMOSPHERE — UNIFIED CINEMATIC BACKGROUND SYSTEM
+   One single continuous background · Deep wine red · Burgundy · Crimson
+   ================================================================ */
+
+:root {
+  --dark-wine:    #020a12;
+  --dark-crimson: #051524;
+  --dark-rose:    #0a1e2e;
+  --mid-rose:     #0f304a;
+  --glow-rose:    rgba(50,130,180,0.35);
+  --glow-pink:    rgba(100,190,255,0.2);
+  --text-light:   rgba(220,240,255,0.92);
+  --text-muted:   rgba(150,190,220,0.7);
+}
+
+/* ================================================================
+   GLOBAL FIXED BACKGROUND SYSTEM
+   One unified background behind everything
+   ================================================================ */
+
+/* 1. Body is the root dark canvas */
+html, body {
+  background: #020a12 !important;
+  min-height: 100%;
+}
+
+/* 2. Global fixed background layer — the ONE true background */
+#global-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background:
+    linear-gradient(160deg,
+      #020a12 0%,
+      #051524 15%,
+      #081a28 30%,
+      #051524 45%,
+      #0c2030 60%,
+      #051524 75%,
+      #071220 90%,
+      #020a12 100%
+    );
+  pointer-events: none;
+}
+
+/* ── Slow-breathing ambient light radials — fixed so they never scroll */
+#global-bg-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 35% at 20% 20%, rgba(30,100,140,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 30% at 80% 15%, rgba(20,80,120,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 35% at 15% 80%, rgba(25,100,130,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 35% at 85% 85%, rgba(15,80,110,0.16) 0%, transparent 50%);
+  pointer-events: none;
+  animation: bg-breathe 12s ease-in-out infinite alternate;
+}
+
+/* 4. Top/bottom cinematic glow edge lights */
+#global-bg-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 35% at 50% 0%, rgba(50,150,200,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 30% at 50% 100%, rgba(25,100,150,0.14) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+@keyframes bg-breathe {
+  0%   { opacity: 0.7; }
+  100% { opacity: 1.0; }
+}
+
+/* ================================================================
+   MAIN SITE — transparent overlay on top of global background
+   ================================================================ */
+#main-site {
+  background: transparent !important;
+  position: relative;
+}
+
+/* Remove the old ::before fixed background */
+#main-site::before {
+  display: none !important;
+}
+
+/* Remove the old ::after fog */
+#main-site::after {
+  display: none !important;
+}
+
+/* ================================================================
+   ALL SECTIONS — fully transparent, NO individual backgrounds
+   ================================================================ */
+section,
+#hero,
+#message,
+#reasons,
+#garden,
+#memories {
+  background: transparent !important;
+}
+
+/* Garden section ambient — subtle, not conflicting */
+.garden-bg {
+  background: linear-gradient(180deg,
+    transparent,
+    rgba(10,50,80,0.25) 30%,
+    rgba(15,60,90,0.2) 70%,
+    transparent
+  ) !important;
+}
+
+/* Finale section: use same dark atmosphere, NOT a separate background */
+#finale {
+  background: transparent !important;
+}
+
+/* Footer matches */
+footer {
+  background: rgba(2,8,18,0.95) !important;
+  border-top: 1px solid rgba(50,130,180,0.15);
+}
+
+/* ================================================================
+   CINEMATIC VIGNETTE — fixed overlay
+   ================================================================ */
+.cinematic-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(
+    ellipse 100% 100% at 50% 50%,
+    transparent 45%,
+    rgba(1,5,12,0.5) 100%
+  );
+}
+
+/* ================================================================
+   TEXT COLOR OVERRIDES FOR DARK BACKGROUND
+   ================================================================ */
+.hero-eyebrow       { color: rgba(160,210,255,0.85) !important; }
+.hero-title .line1  { color: rgba(235,245,255,0.95) !important; }
+.hero-title .line2  { color: rgba(160,210,255,0.9) !important; }
+.hero-sub           { color: rgba(150,195,225,0.8) !important; }
+.section-eyebrow    { color: rgba(140,200,255,0.9) !important; }
+.section-title      { color: rgba(225,240,255,0.95) !important; }
+.section-title em   { color: rgba(150,210,255,0.9) !important; }
+.scroll-btn         { color: rgba(120,170,210,0.7) !important; }
+
+.msg-title  { color: rgba(235,245,255,0.95) !important; }
+.msg-body   { color: rgba(160,200,230,0.85) !important; }
+
+.reason-card h3  { color: rgba(225,240,255,0.95) !important; }
+.reason-card p   { color: rgba(145,185,215,0.8) !important; }
+
+.section-title.garden-title { color: rgba(225,240,255,0.95) !important; }
+.garden-note                { color: rgba(130,175,210,0.7) !important; }
+
+.gallery-caption  { color: rgba(170,210,240,0.9) !important; background: rgba(0,0,0,0.25) !important; }
+.gallery-note     { color: rgba(130,175,210,0.65) !important; }
+
+/* ================================================================
+   GLASS MORPHISM — dark-adapted
+   ================================================================ */
+.glass {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(150,200,255,0.15) !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(200,230,255,0.08) !important;
+}
+
+.message-card {
+  background: rgba(255,255,255,0.055) !important;
+  border-color: rgba(180,220,255,0.15) !important;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.55), 0 0 50px rgba(40,120,180,0.1), inset 0 1px 0 rgba(200,230,255,0.1) !important;
+}
+
+.reason-card {
+  background: rgba(255,255,255,0.045) !important;
+  border-color: rgba(150,200,255,0.12) !important;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.45), inset 0 1px 0 rgba(180,220,255,0.08) !important;
+}
+
+/* ================================================================
+   GALLERY PLACEHOLDER
+   ================================================================ */
+.gallery-placeholder {
+  background: linear-gradient(135deg, rgba(15,50,80,0.5), rgba(8,25,50,0.45)) !important;
+}
+
+/* ================================================================
+   AMBIENT ORBS — now flower shapes, so minimal base styles
+   ================================================================ */
+.orb {
+  position: absolute;
+  border-radius: 0;
+  background: none !important;
+}
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+::-webkit-scrollbar-track { background: #020a12 !important; }
+::-webkit-scrollbar-thumb { background: rgba(50,130,200,0.5) !important; }
+
+/* ================================================================
+   SECTION BLEND SEPARATORS — ultra-soft
+   ================================================================ */
+section + section::before {
+  content: '';
+  display: block;
+  width: 180px;
+  height: 1px;
+  margin: 0 auto -60px;
+  background: linear-gradient(90deg, transparent, rgba(60,140,200,0.25), transparent);
+}
+
+/* ================================================================
+   GLOBAL AMBIENT CONTINUITY — Ensures cinematic feel EVERYWHERE
+   ================================================================ */
+
+/* Soft ambient radial that follows the page (not fixed) — adds warmth below hero */
+#main-site::after {
+  display: block !important;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 25% at 50% 18%, rgba(30,100,160,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 20% at 20% 45%, rgba(20,80,130,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 20% at 80% 62%, rgba(25,100,140,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 20% at 50% 78%, rgba(22,90,140,0.09) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure particle-canvas and floral-canvas always stay fixed and visible */
+#particle-canvas,
+#floral-canvas,
+#falling-petals {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* Sections sit ABOVE canvas layers so content is readable, canvases are z 2-4 */
+#main-site section,
+#main-site footer {
+  position: relative !important;
+  z-index: 15 !important;
+}
+
+/* BUT section backgrounds stay transparent so canvas shows through */
+#hero, #message, #reasons, #garden, #memories, #finale {
+  background: transparent !important;
+}
+
+/* Each section gets a very subtle ambient warmth at its edges */
+#message::after,
+#reasons::after,
+#garden::after,
+#memories::after,
+#finale::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 40% at 50% 100%, rgba(15,70,120,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Section inner sits above ambient overlays */
+.section-inner,
+.message-card,
+.reasons-grid,
+.flower-garden,
+.gallery-grid,
+.finale-inner {
+  position: relative;
+  z-index: 2;
+}
+
